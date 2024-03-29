@@ -7,7 +7,7 @@ class Post extends StatelessWidget {
   final Color colorPrimary;
   final String DueDate;
 
-  const _Post({
+  const Post({
     Key? key,
     required this.name,
     required this.colorPrimary,
@@ -54,7 +54,7 @@ class Post extends StatelessWidget {
 class _PostGreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return _Post(
+    return Post(
       name: 'Pean',
       colorPrimary: Colors.greenAccent,
       DueDate: '2024-12-31',
@@ -65,7 +65,7 @@ class _PostGreen extends StatelessWidget {
 class _PostRed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return _Post(
+    return Post(
       name: 'Namaga Tema',
       colorPrimary: Colors.deepOrangeAccent,
       DueDate: '2024-12-31',

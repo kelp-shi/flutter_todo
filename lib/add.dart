@@ -30,6 +30,8 @@ class AddPageState {
     //タスクリストに格納
     _task = [_title, _context, _date, _dueFlag];
 
+    dbAcess.setData(_task);
+
     //テスト用
     for (int i = 0; i < 4; i++) {
       print(
