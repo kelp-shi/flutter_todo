@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'add.dart';
+import 'dataAccessHelper.dart';
 
 //Header
 class _PostsHeader extends StatelessWidget {
@@ -72,8 +73,6 @@ class PostList_ extends StatelessWidget {
 }
 
 class PostList extends StatelessWidget {
-  //shared_preferences_getData
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,6 +83,13 @@ class PostList extends StatelessWidget {
           add.addTask('title', 'context', '2024-12-31', true);
           print('-----------------------------------------');
           add.addTask('title2', 'context2', '2024-01-01', false);
+
+          //shared_preferences_getData
+          List<String> _list = [];
+          final dataAccess dbAcess = dataAccess();
+          Future<dynamic> list = dbAcess.getData('todo') ?? [];
+          print('getTask-------------------------------------');
+          //print(list[0]);
         },
         child: Icon(Icons.add),
       ),
