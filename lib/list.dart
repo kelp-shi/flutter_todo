@@ -3,6 +3,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'add.dart';
 import 'dataAccessHelper.dart';
 
+///新クラスーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+class ListPage extends StatefulWidget {
+  const ListPage({Key? key}) : super(key: key);
+
+  @override
+  State<ListPage> createState() => _ListPage();
+}
+
+class _ListPage extends State<ListPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+///旧クラスーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 //Header
 class _PostsHeader extends StatelessWidget {
   @override
