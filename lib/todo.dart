@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ToDo {
+class Todo {
   ///ID
   late String id;
 
@@ -19,7 +19,7 @@ class ToDo {
   ///完了フラグ
   late String delFlg;
 
-  ToDo(
+  Todo(
     this.id,
     this.name,
     this.context,
@@ -39,7 +39,7 @@ class ToDo {
     };
   }
 
-  ToDo.fromJson(Map json) {
+  Todo.fromJson(Map json) {
     id = json['id'];
     name = json['name'];
     context = json['context'];
