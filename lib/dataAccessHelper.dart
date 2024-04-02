@@ -42,26 +42,21 @@ class TodoListStore {
 
   /// Todoを追加する
   void add(
-    String title,
+    String name,
     String context,
+    String dueDate,
+    int dueFlg,
+    int delFlg,
   ) {
-    var id = count() == 0 ? 1 : _list.last.id + 1;
-    var dateTime = getDateTime();
-    var todo = Todo(id, title, context);
-    _list.add(todo);
-    save();
-  }
+    String _dueDate;
 
-  /// Todoを更新する
-  void update(Todo todo, bool done, [String? title, String? context]) {
-    todo.done = done;
-    if (title != null) {
-      todo.title = title;
+    var id = count() == 0 ? 1 : _list.last.id + 1;
+    if (dueFlg != 0) {
+      String _dueDate = getDateTime();
     }
-    if (context != null) {
-      todo.context = context;
-    }
-    todo.updateDate = getDateTime();
+    //一度リストに格納する処理を追加する。
+    //期日フラグを基に期日を設定する
+    _list.add(Todo(id, name, context, _dueDate, dueFlg, delFlg));
     save();
   }
 

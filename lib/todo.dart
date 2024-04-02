@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Todo {
   ///ID
-  late String id;
+  late int id;
 
   /// ToDo名
   late String name;
@@ -14,10 +14,10 @@ class Todo {
   late String dueDate;
 
   ///期日フラグ
-  late String dueFlg;
+  late int dueFlg;
 
-  ///完了フラグ
-  late String delFlg;
+  ///削除フラグ
+  late int delFlg;
 
   Todo(
     this.id,
@@ -27,6 +27,10 @@ class Todo {
     this.dueFlg,
     this.delFlg,
   );
+
+  set title(String title) {}
+
+  set done(bool done) {}
 
   Map toJson() {
     return {
