@@ -44,19 +44,21 @@ class TodoListStore {
   void add(
     String name,
     String context,
-    String dueDate,
+    String inDueDate,
     int dueFlg,
-    int delFlg,
   ) {
-    String _dueDate;
-
+    String dueDate = '';
+    int delFlg = 0;
+    //id採番
     var id = count() == 0 ? 1 : _list.last.id + 1;
-    if (dueFlg != 0) {
-      String _dueDate = getDateTime();
+    //期日フラグ判定によって期日の設定
+    if (dueFlg != 1) {
+      String dueDate = inDueDate;
     }
     //一度リストに格納する処理を追加する。
+    var todo = Todo(id, name, context, dueDate, dueFlg, delFlg);
     //期日フラグを基に期日を設定する
-    _list.add(Todo(id, name, context, _dueDate, dueFlg, delFlg));
+    _list.add(todo);
     save();
   }
 
