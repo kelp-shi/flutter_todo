@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'add.dart';
+//import 'add.dart';
 import 'dataAccessHelper.dart';
 
 ///新クラスーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
@@ -95,17 +95,8 @@ class PostList extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // "push"で新規画面に遷移
-          AddPageState add = AddPageState();
-          add.addTask('title', 'context', '2024-12-31', true);
-          print('-----------------------------------------');
-          add.addTask('title2', 'context2', '2024-01-01', false);
-
-          //shared_preferences_getData
-          List<String> _list = [];
-          final dataAccess dbAcess = dataAccess();
-          Future<dynamic> list = dbAcess.getData('todo') ?? [];
-          print('getTask-------------------------------------');
-          //print(list[0]);
+          TodoListStore add = TodoListStore();
+          add.add('title', 'context', '2024-12-31', 0);
         },
         child: Icon(Icons.add),
       ),
