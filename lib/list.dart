@@ -49,10 +49,20 @@ class _ListPage extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //-----------------header-----------------------
       appBar: AppBar(
         // アプリケーションバーに表示するタイトル
-        title: const Text('Todoリスト'),
+        backgroundColor: Colors.blue,
+        title: const Text(
+          'Task Manager',
+          style: TextStyle(color: Colors.white),
+        ),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20))),
       ),
+      //-----------------body-----------------------
       body: ListView.builder(
         // Todoの件数をリストの件数とする
         itemCount: _store.count(),
@@ -76,6 +86,7 @@ class _ListPage extends State<ListPage> {
                 ),
               ],
             ),
+            //-----------------todo's-----------------------
             child: Container(
               decoration: const BoxDecoration(
                 border: Border(
