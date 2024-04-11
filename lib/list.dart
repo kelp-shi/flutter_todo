@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_uitest/add.dart';
+import 'package:flutter_application_uitest/todo.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //import 'add.dart';
 import 'dataAccessHelper.dart';
@@ -12,103 +15,89 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPage extends State<ListPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
+  /// ストア
+  final TodoListStore _store = TodoListStore();
 
-///旧クラスーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-//Header
-class _PostsHeader extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          flex: 1,
-          child: ListTile(
-            leading: ClipOval(
-              child: Container(
-                color: Colors.grey[300],
-                width: 48,
-                height: 48,
-                child: Icon(
-                  Icons.storage,
-                  color: Colors.grey[800],
-                ),
-              ),
-            ),
-            //AppBarのポスト数
-            title: Text('Tasks'),
-            subtitle: Text('20 Posts'),
-          ),
-        ),
-        Expanded(
-          flex: 1,
-          child: ListTile(
-            leading: ClipOval(
-              child: Container(
-                color: Colors.grey[300],
-                width: 48,
-                height: 48,
-                child: Icon(
-                  Icons.style,
-                  color: Colors.grey[800],
-                ),
-              ),
-            ),
-            title: Text('All Types'),
-            subtitle: Text(''),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-//PostList
-class PostList_ extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 55),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          _PostsHeader(),
-          Expanded(
-            child: ListView(
-              children: [],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class PostList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // "push"で新規画面に遷移
-          TodoListStore add = TodoListStore();
-          add.add('title', 'context', '2024-12-31', 0);
+  /// Todoリスト入力画面に遷移する
+  void _pushTodoInputPage([Todo? todo]) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return TodoInputPage(todo: todo);
         },
-        child: Icon(Icons.add),
       ),
     );
-  }
-}
 
-class _MyHomePageState extends StatelessWidget {
+    // Todoの追加/更新を行う場合があるため、画面を更新する
+    setState(() {});
+  }
+
+  /// 初期処理を行う
+  @override
+  void initState() {
+    super.initState();
+
+    Future(
+      () async {
+        // ストアからTodoリストデータをロードし、画面を更新する
+        setState(() => _store.load());
+      },
+    );
+  }
+
+  /// 画面を作成する
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("HelloWorld"),
+      appBar: AppBar(
+        // アプリケーションバーに表示するタイトル
+        title: const Text('Todoリスト'),
+      ),
+      body: ListView.builder(
+        // Todoの件数をリストの件数とする
+        itemCount: _store.count(),
+        itemBuilder: (context, index) {
+          // インデックスに対応するTodoを取得する
+          var item = _store.findByIndex(index);
+          return Slidable(
+            // 左方向にリストアイテムをスライドした場合のアクション
+            endActionPane: ActionPane(
+              motion: const ScrollMotion(),
+              extentRatio: 0.25,
+              children: [
+                SlidableAction(
+                  onPressed: (context) {
+                    // Todoを削除し、画面を更新する
+                    setState(() => {_store.delete(item)});
+                  },
+                  backgroundColor: Colors.red,
+                  icon: Icons.edit,
+                  label: '削除',
+                ),
+              ],
+            ),
+            child: Container(
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Color.fromARGB(255, 203, 33, 33)),
+                ),
+              ),
+              child: ListTile(
+                // ID
+                leading: Text(item.id.toString()),
+                // タイトル
+                title: Text(item.name),
+              ),
+            ),
+          );
+        },
+      ),
+      // Todo追加画面に遷移するボタン
+      floatingActionButton: FloatingActionButton(
+        // Todo追加画面に遷移する
+        onPressed: _pushTodoInputPage,
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

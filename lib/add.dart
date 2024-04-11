@@ -72,16 +72,16 @@ class _TodoInputPageState extends State<TodoInputPage> {
         child: Column(
           children: <Widget>[
             // 完了かのチェックボックス
-            CheckboxListTile(
+            /*CheckboxListTile(
               title: const Text('ok'),
               value: _delFlg,
               onChanged: (bool? value) {
                 setState(() {
                   // Todo(完了か)のチェック状態を変更し、画面を更新する
-                  _done = value ?? false;
+                  //_done = value ?? false;
                 });
               },
-            ),
+            ),*/
             const SizedBox(height: 20),
             // タイトルのテキストフィールド
             TextField(
@@ -100,9 +100,9 @@ class _TodoInputPageState extends State<TodoInputPage> {
                 ),
               ),
               // TextEditingControllerを使用することで、いちいちsetStateしなくても画面を更新してくれる
-              controller: TextEditingController(text: _title),
+              controller: TextEditingController(text: _name),
               onChanged: (String value) {
-                _title = value;
+                _name = value;
               },
             ),
             const SizedBox(height: 20),
@@ -125,9 +125,9 @@ class _TodoInputPageState extends State<TodoInputPage> {
                 ),
               ),
               // TextEditingControllerを使用することで、いちいちsetStateしなくても画面を更新してくれる
-              controller: TextEditingController(text: _detail),
+              controller: TextEditingController(text: _context),
               onChanged: (String value) {
-                _detail = value;
+                _context = value;
               },
             ),
             const SizedBox(height: 20),
@@ -136,7 +136,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  _store.add(_title, _detail);
+                  _store.add(_name, _context, _dueDate, _dueFlg);
                   // Todoリスト画面に戻る
                   Navigator.of(context).pop();
                 },
@@ -156,7 +156,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
                   Navigator.of(context).pop();
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
+                  //primary: Colors.white,
                   side: const BorderSide(
                     color: Colors.blue,
                   ),
@@ -169,9 +169,9 @@ class _TodoInputPageState extends State<TodoInputPage> {
             ),
             const SizedBox(height: 30),
             // 作成日時のテキストラベル
-            Text("作成日時 : $_createDate"),
+            //Text("作成日時 : $_createDate"),
             // 更新日時のテキストラベル
-            Text("更新日時 : $_updateDate"),
+            //Text("更新日時 : $_updateDate"),
           ],
         ),
       ),
@@ -200,8 +200,6 @@ class AddPageState {
       _task.add(data);
       _task.add(_dueFlg);
     }
-
-    dbAcess.setData(_task);
 
     //テスト用
     /*for (int i = 0; i < 4; i++) {

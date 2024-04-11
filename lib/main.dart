@@ -33,7 +33,7 @@ class AdminMobilePage extends StatelessWidget {
             thickness: 1,
             width: 1,
           ),
-          Expanded(child: PostList()),
+          Expanded(child: ListPage()),
         ],
       ),
     );
