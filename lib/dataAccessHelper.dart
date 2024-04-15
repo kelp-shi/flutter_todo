@@ -85,4 +85,13 @@ class TodoListStore {
     var loadTargetList = prefs.getStringList(_saveKey) ?? [];
     _list = loadTargetList.map((a) => Todo.fromJson(json.decode(a))).toList();
   }
+
+  Future<String> loadDataSize() async {
+    String setDataSize = '0';
+    var prefs = await SharedPreferences.getInstance();
+    var loadTargetList = prefs.getStringList(_saveKey) ?? [];
+    _list = loadTargetList.map((a) => Todo.fromJson(json.decode(a))).toList();
+    setDataSize = _list.length.toString();
+    return setDataSize;
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_uitest/list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dataAccessHelper.dart';
 import 'todo.dart';
@@ -71,17 +72,6 @@ class _TodoInputPageState extends State<TodoInputPage> {
         padding: const EdgeInsets.all(30),
         child: Column(
           children: <Widget>[
-            // 完了かのチェックボックス
-            /*CheckboxListTile(
-              title: const Text('ok'),
-              value: _delFlg,
-              onChanged: (bool? value) {
-                setState(() {
-                  // Todo(完了か)のチェック状態を変更し、画面を更新する
-                  //_done = value ?? false;
-                });
-              },
-            ),*/
             const SizedBox(height: 20),
             // タイトルのテキストフィールド
             TextField(
@@ -168,10 +158,6 @@ class _TodoInputPageState extends State<TodoInputPage> {
               ),
             ),
             const SizedBox(height: 30),
-            // 作成日時のテキストラベル
-            //Text("作成日時 : $_createDate"),
-            // 更新日時のテキストラベル
-            //Text("更新日時 : $_updateDate"),
           ],
         ),
       ),
