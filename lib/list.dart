@@ -1,10 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_uitest/add.dart';
 import 'package:flutter_application_uitest/todo.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 //import 'add.dart';
 import 'dataAccessHelper.dart';
 import 'header.dart';
@@ -49,12 +46,17 @@ class _ListPage extends State<ListPage> {
           return CircularProgressIndicator();
           //非同期エラー処理
         } else if (snapshot.hasError) {
-          return Text('エラーが発生しました');
+          return Text('Error occurred');
           //非同期正常読み込み
         } else {
           return Column(
             children: [
-              header,
+              //header読み込み
+              Padding(
+                padding: EdgeInsets.only(top: 50.0),
+                child: header,
+              ),
+              //body読み込み
               Expanded(
                   child: ListView.builder(
                 itemCount: _store.count(),
@@ -62,27 +64,27 @@ class _ListPage extends State<ListPage> {
                   // インデックスに対応するTodoを取得する
                   var item = _store.findByIndex(index);
                   return Slidable(
-                    // 左方向にリストアイテムをスライドした場合のアクション
-                    endActionPane: ActionPane(
-                      motion: const ScrollMotion(),
-                      extentRatio: 0.25,
-                      children: [
-                        SlidableAction(
-                          onPressed: (context) {
-                            // Todoを削除し、画面を更新する
-                            setState(() {
-                              _store.delete(item);
-                            });
-                            print(_store.count());
-                          },
-                          backgroundColor: Colors.red,
-                          icon: Icons.edit,
-                          label: '削除',
-                        ),
-                      ],
-                    ),
-                    //-----------------todo's-----------------------
-                    child: Container(
+                      // 左方向にリストアイテムをスライドした場合のアクション
+                      endActionPane: ActionPane(
+                        motion: const ScrollMotion(),
+                        extentRatio: 0.25,
+                        children: [
+                          SlidableAction(
+                            onPressed: (context) {
+                              // Todoを削除し、画面を更新する
+                              setState(() {
+                                _store.delete(item);
+                              });
+                              print(_store.count());
+                            },
+                            backgroundColor: Colors.red,
+                            icon: Icons.edit,
+                            label: 'Delete',
+                          ),
+                        ],
+                      ),
+                      //-----------------todo's-----------------------
+                      /*child: Container(
                       decoration: const BoxDecoration(
                         border: Border(
                           bottom: BorderSide(
@@ -95,10 +97,46 @@ class _ListPage extends State<ListPage> {
                         // タイトル
                         title: Text(item.name),
                       ),
-                    ),
-                  );
+                    ),*/
+                      child: Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        child: Card(
+                          elevation: 8,
+                          shadowColor: Colors.grey,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Column(
+                            children: [
+                              ListTile(
+                                leading: ClipOval(
+                                  child: Container(
+                                    color: Colors.amber,
+                                    width: 25,
+                                    height: 25,
+                                    child: Center(
+                                      child: Text(
+                                        item.id.toString(),
+                                        style: TextStyle(
+                                            color:
+                                                Color.fromARGB(255, 91, 83, 83),
+                                            fontSize: 15),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                title: Text(item.name),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ));
                 },
-              ))
+              )),
+              //追加ボタン
+              ElevatedButton(
+                  onPressed: _pushTodoInputPage, child: const Icon(Icons.add)),
             ],
           );
         }
@@ -106,134 +144,3 @@ class _ListPage extends State<ListPage> {
     );
   }
 }
-
-/*class _post extends StatefulWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: _store.count(),
-      itemBuilder: (context, index) {
-        // インデックスに対応するTodoを取得する
-        var item = _store.findByIndex(index);
-        return Slidable(
-          // 左方向にリストアイテムをスライドした場合のアクション
-          endActionPane: ActionPane(
-            motion: const ScrollMotion(),
-            extentRatio: 0.25,
-            children: [
-              SlidableAction(
-                onPressed: (context) {
-                  // Todoを削除し、画面を更新する
-                  setState(() => {_store.delete(item)});
-                  print(_store.count());
-                },
-                backgroundColor: Colors.red,
-                icon: Icons.edit,
-                label: '削除',
-              ),
-            ],
-          ),
-          //-----------------todo's-----------------------
-          child: Container(
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Color.fromARGB(255, 203, 33, 33)),
-              ),
-            ),
-            child: ListTile(
-              // ID
-              leading: Text(item.id.toString()),
-              // タイトル
-              title: Text(item.name),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}*/
-
-/*
-  /// 画面を作成する
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      //-----------------header-----------------------
-      appBar: AppBar(
-        // アプリケーションバーに表示するタイトル
-        backgroundColor: Colors.blue,
-        title: const Text(
-          'Task Manager',
-          style: TextStyle(color: Colors.white),
-        ),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20))),
-        actions: [
-          Icon(
-            Icons.text_snippet_outlined,
-            color: Colors.white,
-          ),
-          Title(
-              color: Colors.white,
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
-                child: Text(
-                  'Tasks \n $itemSize items',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ))
-        ],
-      ),
-      //-----------------body-----------------------
-      body: ListView.builder(
-        // Todoの件数をリストの件数とする
-        itemCount: _store.count(),
-        itemBuilder: (context, index) {
-          // インデックスに対応するTodoを取得する
-          var item = _store.findByIndex(index);
-          return Slidable(
-            // 左方向にリストアイテムをスライドした場合のアクション
-            endActionPane: ActionPane(
-              motion: const ScrollMotion(),
-              extentRatio: 0.25,
-              children: [
-                SlidableAction(
-                  onPressed: (context) {
-                    // Todoを削除し、画面を更新する
-                    setState(() => {_store.delete(item)});
-                    print(_store.count());
-                  },
-                  backgroundColor: Colors.red,
-                  icon: Icons.edit,
-                  label: '削除',
-                ),
-              ],
-            ),
-            //-----------------todo's-----------------------
-            child: Container(
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Color.fromARGB(255, 203, 33, 33)),
-                ),
-              ),
-              child: ListTile(
-                // ID
-                leading: Text(item.id.toString()),
-                // タイトル
-                title: Text(item.name),
-              ),
-            ),
-          );
-        },
-      ),
-      // Todo追加画面に遷移するボタン
-      floatingActionButton: FloatingActionButton(
-        // Todo追加画面に遷移する
-        onPressed: _pushTodoInputPage,
-        child: const Icon(Icons.add),
-      ),
-    );
-  }*/
-

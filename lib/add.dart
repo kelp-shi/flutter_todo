@@ -77,7 +77,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
             TextField(
               autofocus: true,
               decoration: const InputDecoration(
-                labelText: "タイトル",
+                labelText: "Title",
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.blue,
@@ -102,7 +102,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
               maxLines: null,
               minLines: 3,
               decoration: const InputDecoration(
-                labelText: "詳細",
+                labelText: "Context",
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.blue,
@@ -131,7 +131,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  _isCreateTodo ? '追加' : '更新',
+                  _isCreateTodo ? 'Add' : '更新',
                   style: const TextStyle(color: Colors.white),
                 ),
               ),
@@ -152,7 +152,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
                   ),
                 ),
                 child: const Text(
-                  "キャンセル",
+                  "Cancel",
                   style: TextStyle(color: Colors.blue),
                 ),
               ),
