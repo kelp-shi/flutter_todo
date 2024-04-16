@@ -13,24 +13,26 @@ class Todo {
   ///期日
   late String dueDate;
 
+  ///作成日時
+  late String date;
+
   ///期日フラグ
   late int dueFlg;
 
-  ///削除フラグ
-  late int delFlg;
+  ///タグカラー
+  late Color tagColer;
 
   Todo(
     this.id,
     this.name,
     this.context,
     this.dueDate,
+    this.date,
     this.dueFlg,
-    this.delFlg,
+    this.tagColer,
   );
 
   set title(String title) {}
-
-  set done(bool done) {}
 
   Map toJson() {
     return {
@@ -38,8 +40,9 @@ class Todo {
       'name': name,
       'context': context,
       'dueDate': dueDate,
+      'date': date,
       'dueFlg': dueFlg,
-      'delFlg': delFlg,
+      'tagColer': tagColer,
     };
   }
 
@@ -48,7 +51,8 @@ class Todo {
     name = json['name'];
     context = json['context'];
     dueDate = json['dueDate'];
+    date = json['date'];
     dueFlg = json['dueFlg'];
-    delFlg = json['delFlg'];
+    tagColer = json['tagColer'];
   }
 }

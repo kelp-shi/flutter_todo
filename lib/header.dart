@@ -41,7 +41,7 @@ class _PostsHeaderState extends State<PostsHeader> {
             subtitle: Text('$taskSize Posts'),
           ),
         ),
-        Expanded(
+        /*Expanded(
           flex: 1,
           child: ListTile(
             leading: ClipOval(
@@ -58,7 +58,7 @@ class _PostsHeaderState extends State<PostsHeader> {
             title: Text('All Types'),
             subtitle: Text(''),
           ),
-        ),
+        ),*/
       ],
     );
   }

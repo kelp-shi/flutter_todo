@@ -36,14 +36,11 @@ class _TodoInputPageState extends State<TodoInputPage> {
   /// 画面項目：詳細
   late String _context;
 
-  /// 画面項目：完了か
+  /// 画面項目：期日
   late String _dueDate;
 
-  /// 画面項目：作成日時
+  /// 画面項目：期日フラグ
   late int _dueFlg;
-
-  /// 画面項目：更新日時
-  late int _delFlg;
 
   /// 初期処理を行う
   @override
@@ -55,9 +52,10 @@ class _TodoInputPageState extends State<TodoInputPage> {
     _context = todo?.context ?? "";
     _dueDate = todo?.dueDate ?? "";
     _dueFlg = todo?.dueFlg ?? 0;
-    _delFlg = todo?.delFlg ?? 0;
     _isCreateTodo = todo == null;
   }
+
+  int tagColorNum = 0;
 
   /// 画面を作成する
   @override
@@ -70,7 +68,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
       body: Container(
         // 全体のパディング
         padding: const EdgeInsets.all(30),
-        child: Column(
+        child: ListView(
           children: <Widget>[
             const SizedBox(height: 20),
             // タイトルのテキストフィールド
@@ -96,6 +94,123 @@ class _TodoInputPageState extends State<TodoInputPage> {
               },
             ),
             const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // グレー
+                GestureDetector(
+                  onTap: () {
+                    tagColorNum = 0;
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey,
+                    ),
+                    width: 25,
+                    height: 25,
+                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
+                  ),
+                ),
+                // 赤
+                GestureDetector(
+                  onTap: () {
+                    tagColorNum = 1;
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.red,
+                    ),
+                    width: 25,
+                    height: 25,
+                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
+                  ),
+                ),
+                // オレンジ
+                GestureDetector(
+                  onTap: () {
+                    tagColorNum = 2;
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.orange,
+                    ),
+                    width: 25,
+                    height: 25,
+                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
+                  ),
+                ),
+                // みどり
+                GestureDetector(
+                  onTap: () {
+                    tagColorNum = 3;
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.green,
+                    ),
+                    width: 25,
+                    height: 25,
+                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
+                  ),
+                ),
+                // 青
+                GestureDetector(
+                  onTap: () {
+                    tagColorNum = 4;
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.blue,
+                    ),
+                    width: 25,
+                    height: 25,
+                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
+                  ),
+                ),
+                // 紫
+                GestureDetector(
+                  onTap: () {
+                    tagColorNum = 5;
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.deepPurple,
+                    ),
+                    width: 25,
+                    height: 25,
+                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
+                  ),
+                ),
+                // 黒
+                GestureDetector(
+                  onTap: () {
+                    tagColorNum = 6;
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.black,
+                    ),
+                    width: 25,
+                    height: 25,
+                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
+                  ),
+                ),
+              ],
+            ),
             // 詳細のテキストフィールド
             TextField(
               keyboardType: TextInputType.multiline,
@@ -126,7 +241,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  _store.add(_name, _context, _dueDate, _dueFlg);
+                  _store.add(_name, _context, _dueDate, _dueFlg, tagColorNum);
                   // Todoリスト画面に戻る
                   Navigator.of(context).pop();
                 },
@@ -162,41 +277,5 @@ class _TodoInputPageState extends State<TodoInputPage> {
         ),
       ),
     );
-  }
-}
-
-///試験処理ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-//追加処理
-class AddPageState {
-  //DBアクセス
-  //final dataAccess dbAcess = dataAccess();
-
-  void addTask(String title, String context, String data, bool dueflg) async {
-    //期日入力フラグ(初期値 0 = false)
-    String _dueFlg = '0';
-    //タスク
-    List<String> _task = List.empty();
-
-    _task = [title, context];
-
-    //期日判定
-    if (dueflg != false) {
-      //期日入力フラグがtrueの場合、タスクに期日を設定する
-      _dueFlg = '1';
-      _task.add(data);
-      _task.add(_dueFlg);
-    }
-
-    //テスト用
-    /*for (int i = 0; i < 4; i++) {
-      print(
-        _task[i],
-      );
-    }*/
-    //DBアクセス・データセット
-    //dbAcess.setData(_task);
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setStringList('todo', _task);
-    print('set data');
   }
 }

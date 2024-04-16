@@ -84,20 +84,6 @@ class _ListPage extends State<ListPage> {
                         ],
                       ),
                       //-----------------todo's-----------------------
-                      /*child: Container(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                              color: Color.fromARGB(255, 203, 33, 33)),
-                        ),
-                      ),
-                      child: ListTile(
-                        // ID
-                        leading: Text(item.id.toString()),
-                        // タイトル
-                        title: Text(item.name),
-                      ),
-                    ),*/
                       child: Container(
                         margin:
                             EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -112,21 +98,13 @@ class _ListPage extends State<ListPage> {
                               ListTile(
                                 leading: ClipOval(
                                   child: Container(
-                                    color: Colors.amber,
+                                    color: item.tagColer,
                                     width: 25,
                                     height: 25,
-                                    child: Center(
-                                      child: Text(
-                                        item.id.toString(),
-                                        style: TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 91, 83, 83),
-                                            fontSize: 15),
-                                      ),
-                                    ),
                                   ),
                                 ),
                                 title: Text(item.name),
+                                subtitle: Text(item.date),
                               ),
                             ],
                           ),
