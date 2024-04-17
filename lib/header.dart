@@ -4,7 +4,6 @@ import 'dataAccessHelper.dart';
 class PostsHeader extends StatefulWidget {
   //int taskSize = 0;
   //PostsHeader({Key? key, required this.taskSize}) : super(key: key);
-
   @override
   _PostsHeaderState createState() => _PostsHeaderState();
 }
@@ -21,6 +20,7 @@ class _PostsHeaderState extends State<PostsHeader> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('----------header処理開始----------');
     return Row(
       children: [
         Expanded(

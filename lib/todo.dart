@@ -20,7 +20,7 @@ class Todo {
   late int dueFlg;
 
   ///タグカラー
-  late Color tagColer;
+  late List<int> tagColer;
 
   Todo(
     this.id,
@@ -53,6 +53,8 @@ class Todo {
     dueDate = json['dueDate'];
     date = json['date'];
     dueFlg = json['dueFlg'];
-    tagColer = json['tagColer'];
+    //tagColer = json['tagColer'];
+    tagColer =
+        (json['tagColer'] as List<dynamic>).map((e) => e as int).toList();
   }
 }

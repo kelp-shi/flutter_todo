@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_uitest/add.dart';
 import 'package:flutter_application_uitest/todo.dart';
@@ -42,6 +43,7 @@ class _ListPage extends State<ListPage> {
       future: _store.loadDataSize(),
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         //非同期待機中
+        debugPrint('----------非同期処理widget 開始----------');
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator();
           //非同期エラー処理
@@ -98,7 +100,12 @@ class _ListPage extends State<ListPage> {
                               ListTile(
                                 leading: ClipOval(
                                   child: Container(
-                                    color: item.tagColer,
+                                    color: Color.fromARGB(
+                                      item.tagColer[0],
+                                      item.tagColer[1],
+                                      item.tagColer[2],
+                                      item.tagColer[3],
+                                    ),
                                     width: 25,
                                     height: 25,
                                   ),

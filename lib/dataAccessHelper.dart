@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
@@ -40,25 +42,25 @@ class TodoListStore {
     return dateTime;
   }
 
-  Color setTagColor(tagColorNumber) {
-    Color _tagColor = Colors.grey;
+  List<int> setTagColor(tagColorNumber) {
+    List<int> _tagColor = [];
     if (tagColorNumber == 0) {
-      return _tagColor = Colors.grey;
+      return _tagColor = [255, 158, 158, 158];
     } else if (tagColorNumber == 1) {
-      return _tagColor = Colors.red;
+      return _tagColor = [255, 244, 67, 54];
     } else if (tagColorNumber == 2) {
-      return _tagColor = Colors.orange;
+      return _tagColor = [255, 255, 152, 0];
     } else if (tagColorNumber == 3) {
-      return _tagColor = Colors.green;
+      return _tagColor = [255, 76, 175, 80];
     } else if (tagColorNumber == 4) {
-      return _tagColor = Colors.blue;
+      return _tagColor = [255, 33, 150, 243];
     } else if (tagColorNumber == 5) {
-      return _tagColor = Colors.deepPurple;
+      return _tagColor = [255, 103, 58, 183];
     } else if (tagColorNumber == 6) {
-      return _tagColor = Colors.black;
+      return _tagColor = [255, 0, 0, 0];
     } else {
       print('color error');
-      return _tagColor = Colors.grey;
+      return _tagColor = [255, 158, 158, 158];
     }
   }
 
@@ -80,7 +82,7 @@ class TodoListStore {
     //作成日を追加
     String date = getDateTime();
     //タグカラーを追加
-    Color tagColor = setTagColor(tagColorNum);
+    List<int> tagColor = setTagColor(tagColorNum);
     //一度リストに格納する処理を追加する。
     var todo = Todo(id, name, context, dueDate, date, dueFlg, tagColor);
     //期日フラグを基に期日を設定する
@@ -96,28 +98,31 @@ class TodoListStore {
 
   /// Todoを保存する
   void save() async {
-    print('----------------save method start!----------------');
+    debugPrint('----------------save method start!----------------');
     var prefs = await SharedPreferences.getInstance();
-    print('create instance');
+    debugPrint('create instance');
     // SharedPreferencesはプリミティブ型とString型リストしか扱えないため、以下の変換を行っている
     // TodoList形式 → Map形式 → JSON形式 → StrigList形式
-    print('start change format');
+    debugPrint('start change format');
     var saveTargetList = _list.map((a) => json.encode(a.toJson())).toList();
-    print('finishd change format');
+    debugPrint('finishd change format');
     prefs.setStringList(_saveKey, saveTargetList);
-    print('----------------finishd method----------------');
+    debugPrint('----------------finishd method----------------');
   }
 
   /// Todoを読込する
   void load() async {
     var prefs = await SharedPreferences.getInstance();
-    print('----------------load method start!----------------');
+    debugPrint('----------------load method start!----------------');
     // SharedPreferencesはプリミティブ型とString型リストしか扱えないため、以下の変換を行っている
     // StrigList形式 → JSON形式 → Map形式 → TodoList形式
     var loadTargetList = prefs.getStringList(_saveKey) ?? [];
-    print('change format');
-    _list = loadTargetList.map((a) => Todo.fromJson(json.decode(a))).toList();
-    print('----------------finishd method----------------');
+    debugPrint('change format');
+    //_list = loadTargetList.map((a) => Todo.fromJson(json.decode(a))).toList();
+    _list = loadTargetList.map((a) {
+      return Todo.fromJson(json.decode(a));
+    }).toList();
+    debugPrint('----------------finishd method----------------');
   }
 
   Future<String> loadDataSize() async {

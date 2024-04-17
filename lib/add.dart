@@ -56,6 +56,8 @@ class _TodoInputPageState extends State<TodoInputPage> {
   }
 
   int tagColorNum = 0;
+  //bool isSelected = false;
+  int isSelected = 0;
 
   /// 画面を作成する
   @override
@@ -101,13 +103,22 @@ class _TodoInputPageState extends State<TodoInputPage> {
                 GestureDetector(
                   onTap: () {
                     tagColorNum = 0;
+                    isSelected = 0;
+                    setState(() {});
+                    print(
+                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                   },
                   child: Container(
                     padding: EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey,
-                    ),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey,
+                        border: Border.all(
+                          color: isSelected == 0
+                              ? Colors.blue
+                              : Colors.transparent,
+                          width: 3,
+                        )),
                     width: 25,
                     height: 25,
                     margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
@@ -117,12 +128,21 @@ class _TodoInputPageState extends State<TodoInputPage> {
                 GestureDetector(
                   onTap: () {
                     tagColorNum = 1;
+                    isSelected = 1;
+                    setState(() {});
+                    print(
+                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                   },
                   child: Container(
                     padding: EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.red,
+                      border: Border.all(
+                        color:
+                            isSelected == 1 ? Colors.blue : Colors.transparent,
+                        width: 3,
+                      ),
                     ),
                     width: 25,
                     height: 25,
@@ -133,13 +153,22 @@ class _TodoInputPageState extends State<TodoInputPage> {
                 GestureDetector(
                   onTap: () {
                     tagColorNum = 2;
+                    isSelected = 2;
+                    setState(() {});
+                    print(
+                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                   },
                   child: Container(
                     padding: EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.orange,
-                    ),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.orange,
+                        border: Border.all(
+                          color: isSelected == 2
+                              ? Colors.blue
+                              : Colors.transparent,
+                          width: 3,
+                        )),
                     width: 25,
                     height: 25,
                     margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
@@ -149,13 +178,22 @@ class _TodoInputPageState extends State<TodoInputPage> {
                 GestureDetector(
                   onTap: () {
                     tagColorNum = 3;
+                    isSelected = 3;
+                    setState(() {});
+                    print(
+                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                   },
                   child: Container(
                     padding: EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.green,
-                    ),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.green,
+                        border: Border.all(
+                          color: isSelected == 3
+                              ? Colors.blue
+                              : Colors.transparent,
+                          width: 3,
+                        )),
                     width: 25,
                     height: 25,
                     margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
@@ -165,13 +203,22 @@ class _TodoInputPageState extends State<TodoInputPage> {
                 GestureDetector(
                   onTap: () {
                     tagColorNum = 4;
+                    isSelected = 4;
+                    setState(() {});
+                    print(
+                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                   },
                   child: Container(
                     padding: EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.blue,
-                    ),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.blue,
+                        border: Border.all(
+                          color: isSelected == 4
+                              ? Colors.blue
+                              : Colors.transparent,
+                          width: 3,
+                        )),
                     width: 25,
                     height: 25,
                     margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
@@ -181,13 +228,22 @@ class _TodoInputPageState extends State<TodoInputPage> {
                 GestureDetector(
                   onTap: () {
                     tagColorNum = 5;
+                    isSelected = 5;
+                    setState(() {});
+                    print(
+                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                   },
                   child: Container(
                     padding: EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.deepPurple,
-                    ),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.deepPurple,
+                        border: Border.all(
+                          color: isSelected == 5
+                              ? Colors.blue
+                              : Colors.transparent,
+                          width: 3,
+                        )),
                     width: 25,
                     height: 25,
                     margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
@@ -197,13 +253,22 @@ class _TodoInputPageState extends State<TodoInputPage> {
                 GestureDetector(
                   onTap: () {
                     tagColorNum = 6;
+                    isSelected = 6;
+                    setState(() {});
+                    print(
+                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                   },
                   child: Container(
                     padding: EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.black,
-                    ),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.black,
+                        border: Border.all(
+                          color: isSelected == 6
+                              ? Colors.blue
+                              : Colors.transparent,
+                          width: 3,
+                        )),
                     width: 25,
                     height: 25,
                     margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
