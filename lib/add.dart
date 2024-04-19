@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_uitest/list.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dataAccessHelper.dart';
 import 'todo.dart';
 
@@ -98,10 +96,10 @@ class _TodoInputPageState extends State<TodoInputPage> {
 
             //-----------------------------------------
             Container(
-                padding: EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10),
                 //枠線・テキストラベル設定
                 child: InputDecorator(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "Tag color",
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -119,11 +117,11 @@ class _TodoInputPageState extends State<TodoInputPage> {
                           tagColorNum = 0;
                           isSelected = 0;
                           setState(() {});
-                          print(
+                          debugPrint(
                               'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                         },
                         child: Container(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.grey,
@@ -135,7 +133,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
                               )),
                           width: 25,
                           height: 25,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                          margin: const EdgeInsets.fromLTRB(10, 10, 10, 15),
                         ),
                       ),
                       // 赤
@@ -144,11 +142,11 @@ class _TodoInputPageState extends State<TodoInputPage> {
                           tagColorNum = 1;
                           isSelected = 1;
                           setState(() {});
-                          print(
+                          debugPrint(
                               'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                         },
                         child: Container(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.red,
@@ -161,7 +159,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
                           ),
                           width: 25,
                           height: 25,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                          margin: const EdgeInsets.fromLTRB(10, 10, 10, 15),
                         ),
                       ),
                       // オレンジ
@@ -170,11 +168,11 @@ class _TodoInputPageState extends State<TodoInputPage> {
                           tagColorNum = 2;
                           isSelected = 2;
                           setState(() {});
-                          print(
+                          debugPrint(
                               'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                         },
                         child: Container(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.orange,
@@ -186,7 +184,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
                               )),
                           width: 25,
                           height: 25,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                          margin: const EdgeInsets.fromLTRB(10, 10, 10, 15),
                         ),
                       ),
                       // みどり
@@ -195,11 +193,11 @@ class _TodoInputPageState extends State<TodoInputPage> {
                           tagColorNum = 3;
                           isSelected = 3;
                           setState(() {});
-                          print(
+                          debugPrint(
                               'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                         },
                         child: Container(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.green,
@@ -211,7 +209,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
                               )),
                           width: 25,
                           height: 25,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                          margin: const EdgeInsets.fromLTRB(10, 10, 10, 15),
                         ),
                       ),
                       // 青
@@ -220,11 +218,11 @@ class _TodoInputPageState extends State<TodoInputPage> {
                           tagColorNum = 4;
                           isSelected = 4;
                           setState(() {});
-                          print(
+                          debugPrint(
                               'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                         },
                         child: Container(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.blue,
@@ -236,7 +234,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
                               )),
                           width: 25,
                           height: 25,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                          margin: const EdgeInsets.fromLTRB(10, 10, 10, 15),
                         ),
                       ),
                       // 紫
@@ -246,11 +244,11 @@ class _TodoInputPageState extends State<TodoInputPage> {
                           tagColorNum = 5;
                           isSelected = 5;
                           setState(() {});
-                          print(
+                          debugPrint(
                               'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                         },
                         child: Container(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.deepPurple,
@@ -262,7 +260,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
                               )),
                           width: 25,
                           height: 25,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                          margin: const EdgeInsets.fromLTRB(10, 10, 10, 15),
                         ),
                       ),
                       // 黒
@@ -271,11 +269,11 @@ class _TodoInputPageState extends State<TodoInputPage> {
                           tagColorNum = 6;
                           isSelected = 6;
                           setState(() {});
-                          print(
+                          debugPrint(
                               'select colorNumber : $tagColorNum selectFlg : $isSelected ');
                         },
                         child: Container(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.black,
@@ -287,7 +285,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
                               )),
                           width: 25,
                           height: 25,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                          margin: const EdgeInsets.fromLTRB(10, 10, 10, 15),
                         ),
                       ),
                     ],

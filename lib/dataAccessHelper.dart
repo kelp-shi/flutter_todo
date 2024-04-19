@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
@@ -12,6 +10,7 @@ class TodoListStore {
 
   /// Todoリスト
   List<Todo> _list = [];
+  List<int> tagColor = [];
 
   /// ストアのインスタンス
   static final TodoListStore _instance = TodoListStore._internal();
@@ -43,24 +42,23 @@ class TodoListStore {
   }
 
   List<int> setTagColor(tagColorNumber) {
-    List<int> _tagColor = [];
     if (tagColorNumber == 0) {
-      return _tagColor = [255, 158, 158, 158];
+      return tagColor = [255, 158, 158, 158];
     } else if (tagColorNumber == 1) {
-      return _tagColor = [255, 244, 67, 54];
+      return tagColor = [255, 244, 67, 54];
     } else if (tagColorNumber == 2) {
-      return _tagColor = [255, 255, 152, 0];
+      return tagColor = [255, 255, 152, 0];
     } else if (tagColorNumber == 3) {
-      return _tagColor = [255, 76, 175, 80];
+      return tagColor = [255, 76, 175, 80];
     } else if (tagColorNumber == 4) {
-      return _tagColor = [255, 33, 150, 243];
+      return tagColor = [255, 33, 150, 243];
     } else if (tagColorNumber == 5) {
-      return _tagColor = [255, 103, 58, 183];
+      return tagColor = [255, 103, 58, 183];
     } else if (tagColorNumber == 6) {
-      return _tagColor = [255, 0, 0, 0];
+      return tagColor = [255, 0, 0, 0];
     } else {
-      print('color error');
-      return _tagColor = [255, 158, 158, 158];
+      debugPrint('color error');
+      return tagColor = [255, 158, 158, 158];
     }
   }
 
