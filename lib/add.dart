@@ -34,7 +34,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
   late String _name;
 
   /// 画面項目：詳細
-  late String _context;
+  //late String _context;
 
   /// 画面項目：期日
   late String _dueDate;
@@ -49,7 +49,7 @@ class _TodoInputPageState extends State<TodoInputPage> {
     var todo = widget.todo;
 
     _name = todo?.name ?? "";
-    _context = todo?.context ?? "";
+    //_context = todo?.context ?? "";
     _dueDate = todo?.dueDate ?? "";
     _dueFlg = todo?.dueFlg ?? 0;
     _isCreateTodo = todo == null;
@@ -68,7 +68,6 @@ class _TodoInputPageState extends State<TodoInputPage> {
         title: Text(_isCreateTodo ? 'Todo追加' : 'Todo更新'),
       ),
       body: Container(
-        // 全体のパディング
         padding: const EdgeInsets.all(30),
         child: ListView(
           children: <Widget>[
@@ -96,220 +95,217 @@ class _TodoInputPageState extends State<TodoInputPage> {
               },
             ),
             const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // グレー
-                GestureDetector(
-                  onTap: () {
-                    tagColorNum = 0;
-                    isSelected = 0;
-                    setState(() {});
-                    print(
-                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey,
-                        border: Border.all(
-                          color: isSelected == 0
-                              ? Colors.blue
-                              : Colors.transparent,
-                          width: 3,
-                        )),
-                    width: 25,
-                    height: 25,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
-                  ),
-                ),
-                // 赤
-                GestureDetector(
-                  onTap: () {
-                    tagColorNum = 1;
-                    isSelected = 1;
-                    setState(() {});
-                    print(
-                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.red,
-                      border: Border.all(
-                        color:
-                            isSelected == 1 ? Colors.blue : Colors.transparent,
-                        width: 3,
+
+            //-----------------------------------------
+            Container(
+                padding: EdgeInsets.only(top: 10),
+                //枠線・テキストラベル設定
+                child: InputDecorator(
+                  decoration: InputDecoration(
+                    labelText: "Tag color",
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.blue,
                       ),
                     ),
-                    width: 25,
-                    height: 25,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
                   ),
-                ),
-                // オレンジ
-                GestureDetector(
-                  onTap: () {
-                    tagColorNum = 2;
-                    isSelected = 2;
-                    setState(() {});
-                    print(
-                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.orange,
-                        border: Border.all(
-                          color: isSelected == 2
-                              ? Colors.blue
-                              : Colors.transparent,
-                          width: 3,
-                        )),
-                    width: 25,
-                    height: 25,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
+                  //タグカラー
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // グレー
+                      GestureDetector(
+                        onTap: () {
+                          tagColorNum = 0;
+                          isSelected = 0;
+                          setState(() {});
+                          print(
+                              'select colorNumber : $tagColorNum selectFlg : $isSelected ');
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.grey,
+                              border: Border.all(
+                                color: isSelected == 0
+                                    ? Colors.blue
+                                    : Colors.transparent,
+                                width: 3,
+                              )),
+                          width: 25,
+                          height: 25,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                        ),
+                      ),
+                      // 赤
+                      GestureDetector(
+                        onTap: () {
+                          tagColorNum = 1;
+                          isSelected = 1;
+                          setState(() {});
+                          print(
+                              'select colorNumber : $tagColorNum selectFlg : $isSelected ');
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.red,
+                            border: Border.all(
+                              color: isSelected == 1
+                                  ? Colors.blue
+                                  : Colors.transparent,
+                              width: 3,
+                            ),
+                          ),
+                          width: 25,
+                          height: 25,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                        ),
+                      ),
+                      // オレンジ
+                      GestureDetector(
+                        onTap: () {
+                          tagColorNum = 2;
+                          isSelected = 2;
+                          setState(() {});
+                          print(
+                              'select colorNumber : $tagColorNum selectFlg : $isSelected ');
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.orange,
+                              border: Border.all(
+                                color: isSelected == 2
+                                    ? Colors.blue
+                                    : Colors.transparent,
+                                width: 3,
+                              )),
+                          width: 25,
+                          height: 25,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                        ),
+                      ),
+                      // みどり
+                      GestureDetector(
+                        onTap: () {
+                          tagColorNum = 3;
+                          isSelected = 3;
+                          setState(() {});
+                          print(
+                              'select colorNumber : $tagColorNum selectFlg : $isSelected ');
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.green,
+                              border: Border.all(
+                                color: isSelected == 3
+                                    ? Colors.blue
+                                    : Colors.transparent,
+                                width: 3,
+                              )),
+                          width: 25,
+                          height: 25,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                        ),
+                      ),
+                      // 青
+                      GestureDetector(
+                        onTap: () {
+                          tagColorNum = 4;
+                          isSelected = 4;
+                          setState(() {});
+                          print(
+                              'select colorNumber : $tagColorNum selectFlg : $isSelected ');
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.blue,
+                              border: Border.all(
+                                color: isSelected == 4
+                                    ? Colors.blue
+                                    : Colors.transparent,
+                                width: 3,
+                              )),
+                          width: 25,
+                          height: 25,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                        ),
+                      ),
+                      // 紫
+
+                      GestureDetector(
+                        onTap: () {
+                          tagColorNum = 5;
+                          isSelected = 5;
+                          setState(() {});
+                          print(
+                              'select colorNumber : $tagColorNum selectFlg : $isSelected ');
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.deepPurple,
+                              border: Border.all(
+                                color: isSelected == 5
+                                    ? Colors.blue
+                                    : Colors.transparent,
+                                width: 3,
+                              )),
+                          width: 25,
+                          height: 25,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                        ),
+                      ),
+                      // 黒
+                      GestureDetector(
+                        onTap: () {
+                          tagColorNum = 6;
+                          isSelected = 6;
+                          setState(() {});
+                          print(
+                              'select colorNumber : $tagColorNum selectFlg : $isSelected ');
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black,
+                              border: Border.all(
+                                color: isSelected == 6
+                                    ? Colors.blue
+                                    : Colors.transparent,
+                                width: 3,
+                              )),
+                          width: 25,
+                          height: 25,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 15),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                // みどり
-                GestureDetector(
-                  onTap: () {
-                    tagColorNum = 3;
-                    isSelected = 3;
-                    setState(() {});
-                    print(
-                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.green,
-                        border: Border.all(
-                          color: isSelected == 3
-                              ? Colors.blue
-                              : Colors.transparent,
-                          width: 3,
-                        )),
-                    width: 25,
-                    height: 25,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
-                  ),
-                ),
-                // 青
-                GestureDetector(
-                  onTap: () {
-                    tagColorNum = 4;
-                    isSelected = 4;
-                    setState(() {});
-                    print(
-                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.blue,
-                        border: Border.all(
-                          color: isSelected == 4
-                              ? Colors.blue
-                              : Colors.transparent,
-                          width: 3,
-                        )),
-                    width: 25,
-                    height: 25,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
-                  ),
-                ),
-                // 紫
-                GestureDetector(
-                  onTap: () {
-                    tagColorNum = 5;
-                    isSelected = 5;
-                    setState(() {});
-                    print(
-                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.deepPurple,
-                        border: Border.all(
-                          color: isSelected == 5
-                              ? Colors.blue
-                              : Colors.transparent,
-                          width: 3,
-                        )),
-                    width: 25,
-                    height: 25,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
-                  ),
-                ),
-                // 黒
-                GestureDetector(
-                  onTap: () {
-                    tagColorNum = 6;
-                    isSelected = 6;
-                    setState(() {});
-                    print(
-                        'select colorNumber : $tagColorNum selectFlg : $isSelected ');
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.black,
-                        border: Border.all(
-                          color: isSelected == 6
-                              ? Colors.blue
-                              : Colors.transparent,
-                          width: 3,
-                        )),
-                    width: 25,
-                    height: 25,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 15),
-                  ),
-                ),
-              ],
-            ),
-            // 詳細のテキストフィールド
-            TextField(
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              minLines: 3,
-              decoration: const InputDecoration(
-                labelText: "Context",
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.blue,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-              // TextEditingControllerを使用することで、いちいちsetStateしなくても画面を更新してくれる
-              controller: TextEditingController(text: _context),
-              onChanged: (String value) {
-                _context = value;
-              },
-            ),
+                )),
             const SizedBox(height: 20),
             // 追加/更新ボタン
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  _store.add(_name, _context, _dueDate, _dueFlg, tagColorNum);
+                  _store.add(_name, _dueDate, _dueFlg, tagColorNum);
                   // Todoリスト画面に戻る
                   Navigator.of(context).pop();
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                ),
                 child: Text(
                   _isCreateTodo ? 'Add' : '更新',
                   style: const TextStyle(color: Colors.white),

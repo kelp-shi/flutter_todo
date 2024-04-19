@@ -67,7 +67,7 @@ class TodoListStore {
   /// Todoを追加する
   void add(
     String name,
-    String context,
+    //String context,
     String inDueDate,
     int dueFlg,
     int tagColorNum,
@@ -84,7 +84,7 @@ class TodoListStore {
     //タグカラーを追加
     List<int> tagColor = setTagColor(tagColorNum);
     //一度リストに格納する処理を追加する。
-    var todo = Todo(id, name, context, dueDate, date, dueFlg, tagColor);
+    var todo = Todo(id, name, dueDate, date, dueFlg, tagColor);
     //期日フラグを基に期日を設定する
     _list.add(todo);
     save();

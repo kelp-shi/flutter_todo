@@ -8,7 +8,7 @@ class Todo {
   late String name;
 
   /// 内容
-  late String context;
+  //late String context;
 
   ///期日
   late String dueDate;
@@ -25,7 +25,7 @@ class Todo {
   Todo(
     this.id,
     this.name,
-    this.context,
+    //this.context,
     this.dueDate,
     this.date,
     this.dueFlg,
@@ -38,7 +38,7 @@ class Todo {
     return {
       'id': id,
       'name': name,
-      'context': context,
+      //'context': context,
       'dueDate': dueDate,
       'date': date,
       'dueFlg': dueFlg,
@@ -49,7 +49,7 @@ class Todo {
   Todo.fromJson(Map json) {
     id = json['id'];
     name = json['name'];
-    context = json['context'];
+    //context = json['context'];
     dueDate = json['dueDate'];
     date = json['date'];
     dueFlg = json['dueFlg'];
