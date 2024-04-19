@@ -55,7 +55,7 @@ class _ListPage extends State<ListPage> {
             children: [
               //header読み込み
               Padding(
-                padding: EdgeInsets.only(top: 50.0),
+                padding: EdgeInsets.only(top: 65.0),
                 child: header,
               ),
               //body読み込み
