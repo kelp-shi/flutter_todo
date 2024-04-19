@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 class AdminMobilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Row(
         children: [
           //未実装サイドナビ

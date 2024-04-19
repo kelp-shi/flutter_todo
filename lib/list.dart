@@ -111,7 +111,7 @@ class _ListPage extends State<ListPage> {
                                   ),
                                 ),
                                 title: Text(item.name),
-                                subtitle: Text(item.date),
+                                subtitle: Text('Added : ' + item.date),
                               ),
                             ],
                           ),
@@ -120,8 +120,27 @@ class _ListPage extends State<ListPage> {
                 },
               )),
               //追加ボタン
-              ElevatedButton(
-                  onPressed: _pushTodoInputPage, child: const Icon(Icons.add)),
+              Container(
+                alignment: Alignment.centerRight,
+                margin: EdgeInsets.only(right: 10, bottom: 10),
+                child: Container(
+                  width: 75, // ボタンの幅
+                  height: 75, // ボタンの高さ
+                  child: ElevatedButton(
+                    onPressed: _pushTodoInputPage,
+                    style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(), // ボタンを丸型にする
+                      backgroundColor: Colors.blue,
+                      padding: EdgeInsets.all(16),
+                    ),
+                    child: Icon(
+                      Icons.add,
+                      size: 40,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
             ],
           );
         }
