@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_uitest/add.dart';
-import 'package:flutter_application_uitest/todo.dart';
+import 'add.dart';
+import 'todo.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 //import 'add.dart';
 import 'dataAccessHelper.dart';

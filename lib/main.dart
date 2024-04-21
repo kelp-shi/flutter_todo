@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'side.dart';
 import 'list.dart';
 
 void main() {
